@@ -1,0 +1,10 @@
+ext:
+  initial_pose_a: 0.3217505543966422
+  initial_pose_x: -1.3999999999999915
+  initial_pose_y: -0.4000009999999996
+initial_cov_aa: 0.1
+initial_cov_xx: 0.25
+initial_cov_yy: 0.25
+initial_pose_a: 0.3217505543966422
+initial_pose_x: -1.3999999999999915
+initial_pose_y: -0.4000009999999996

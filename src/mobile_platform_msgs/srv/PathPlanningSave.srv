@@ -1,0 +1,7 @@
+string path_name
+string mode
+geometry_msgs/Pose[] poses
+
+---
+int16 status
+string message

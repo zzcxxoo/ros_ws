@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- websocket -->
+    <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
+
+    <!-- deal with core dump -->
+    <node name="coredump" pkg="robot_manager" type="coredump.sh"/>
+
+    <!-- load rosparam -->
+    <rosparam file="$(env HOME)/.robot/config/selected_map.yaml" command="load" ns="/selected_map"/>
+    <rosparam command="load" file="$(find robot_manager)/config/oss.yaml" ns="/oss"/>
+    <rosparam command="load" file="$(find robot_manager)/config/nav_status.yaml"/>
+
+    <!-- manager -->
+    <node pkg="robot_manager" name="behavior" type="behavior"></node>
+    <node pkg="robot_manager" name="service_and_map_manager" type="check_services"></node>
+    <node pkg="robot_manager" name="paramchanger" type="params_changer"></node>
+
+    <!-- cleaning -->
+    <node pkg="robot_manager" name="cleaning_task" type="cleaning_task"></node>
+    
+    <!-- planner when died need to be respawned!! -->
+	<include file="$(find robot_manager)/launch/planner.launch"/>
+      
+</launch>
+
+
+

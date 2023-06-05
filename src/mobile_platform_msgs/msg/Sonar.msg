@@ -1,0 +1,17 @@
+std_msgs/Header header
+
+SonarProbe probe_front0
+SonarProbe probe_front1
+SonarProbe probe_front2
+SonarProbe probe_front3
+
+SonarProbe probe_left0
+SonarProbe probe_left1
+
+SonarProbe probe_right0
+SonarProbe probe_right1
+
+SonarProbe probe_rear0
+SonarProbe probe_rear1
+SonarProbe probe_rear2
+SonarProbe probe_rear3

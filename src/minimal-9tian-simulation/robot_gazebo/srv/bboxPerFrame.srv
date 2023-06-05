@@ -1,0 +1,5 @@
+string msg
+---
+uint16 box_num
+bbox[] bboxes
+

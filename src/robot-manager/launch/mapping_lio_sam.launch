@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <!--- LIO-SAM -->
+    <include file="$(find lio_sam)/launch/run_9t.launch" />
+
+    <node name="mapping_to_file" pkg="robot_manager" type="periodic_save_map.sh">
+      <param name="width" value="320"/>
+      <param name="height" value="240"/>
+    </node>
+    
+</launch>

@@ -1,0 +1,4 @@
+mobile_platform_msgs/Scenario data
+---
+int16 status
+string message

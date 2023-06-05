@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="robot_manager" name="basic_check_node" type="basic_check" args="$(find robot_manager)/config/check_rule.json"/>
+</launch>
+
+
+
+

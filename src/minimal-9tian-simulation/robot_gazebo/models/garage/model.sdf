@@ -1,0 +1,38 @@
+<sdf version='1.6'>
+  <model name='garage'>
+    <static>true</static>
+    <link name='base_link'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>-0 0.28926 26.281 0 -0 0</pose>
+        <mass>2.3894e+08</mass>
+        <inertia>
+          <ixx>9.9392e+10</ixx>
+          <ixy>9.293e-06</ixy>
+          <ixz>-6.0303e-06</ixz>
+          <iyy>2.4818e+11</iyy>
+          <iyz>4.1423e+09</iyz>
+          <izz>2.5208e+11</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://garage/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://garage/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

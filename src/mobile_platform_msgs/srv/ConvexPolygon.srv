@@ -1,0 +1,8 @@
+string map_name
+string path_name
+geometry_msgs/Pose[] poses
+---
+int8 status
+string message
+string path_name
+nav_msgs/Path planner_path

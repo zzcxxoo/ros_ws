@@ -1,0 +1,6 @@
+string map_name
+int32 start_station
+int32 end_station
+---
+int8 status
+string message

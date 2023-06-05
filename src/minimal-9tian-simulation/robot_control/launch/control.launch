@@ -1,0 +1,7 @@
+<launch>
+
+    <rosparam file="$(find robot_control)/config/diff_control.yaml" command="load" />
+    <!-- <rosparam command="load" file="$(find cleaningrobot_control)/config/ctrl_gains.yaml" /> -->
+    <node name="base_controller_spawner" pkg="controller_manager" type="spawner" args="nav mobile_joint_publisher" />
+
+</launch>

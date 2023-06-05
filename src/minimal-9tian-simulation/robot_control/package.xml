@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>robot_control</name>
+    <version>0.0.0</version>
+    <description>The robot_control package</description>
+
+    <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+    <maintainer email="liuxiao@todo.todo">liuxiao</maintainer>
+
+    <license>TODO</license>
+    <buildtool_depend>catkin</buildtool_depend>
+    <exec_depend>controller_manager</exec_depend>
+    <exec_depend>joint_state_controller</exec_depend>
+    <exec_depend>robot_state_publisher</exec_depend>
+
+    <export>
+
+    </export>
+</package>

@@ -1,0 +1,5 @@
+Package: mobile-platform-msgs
+Version: 1.1.4
+Architecture: amd64
+Maintainer: jtcx <support@jtcx.cn>
+Description: shared msgs and srvs for jt softwares

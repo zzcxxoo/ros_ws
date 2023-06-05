@@ -1,0 +1,4 @@
+PathPlanningRoute data
+---
+int16 status
+string message

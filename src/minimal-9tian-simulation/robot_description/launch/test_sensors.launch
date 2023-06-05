@@ -1,0 +1,25 @@
+<launch>
+    <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch" /> -->
+    <env name="GAZEBO_MODEL_PATH" value="$(find robot_gazebo)/models"/>
+    <env name="GAZEBO_RESOURCE_PATH" value="$(find robot_gazebo)/models"/>
+    <arg name="world_name" default="$(find robot_gazebo)/worlds/env_latest.world" />
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world_name)" />
+        <arg name="paused" value="false" />
+        <arg name="use_sim_time" value="true" />
+        <arg name="gui" value="true" />
+        <arg name="headless" value="false" />
+        <arg name="debug" value="false" />
+    </include>
+
+    <param name="robot_description" command="$(find xacro)/xacro $(find robot_description)/urdf/diff/robot_with_sensors.urdf.xacro"/>
+
+    <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -model cleanrobot -param robot_description" output="screen" />
+    <node name="fake_joint_calibration" pkg="rostopic" type="rostopic" args="pub /calibrated std_msgs/Bool true" />
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_description)/rviz/test_sensors.rviz" />
+
+</launch>

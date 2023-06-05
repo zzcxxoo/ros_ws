@@ -1,0 +1,41 @@
+syntax = "proto2";
+
+package state_machine.data_type;
+
+message State{
+    required HeadStateType first = 1;
+    optional SecondStateType second = 2;
+    optional TaskType task = 3;
+
+    enum HeadStateType {
+        EMPTY = 0;
+        IDLE = 1;
+        SLEEP = 2;
+        NAVIGATION = 3;
+        CONFIGURATION = 4;
+        CHARGING = 5;
+        EXCEPTION = 6;
+        UPDATE = 7;
+    }
+
+    enum SecondStateType {
+        EMPTY_2 = 0;
+        INITIALIZING = 1;
+        ON = 2;
+        PAUSE = 3;
+        OFF = 4;
+    }
+
+    enum TaskType {
+        NONE = 0;
+        MAPPING = 1;
+        CALIBRATION = 2;
+        PATH_RECORDING = 3;
+        CURB_FOLLOW = 4;
+        COVERAGE_PLAN = 5;
+        AVOID = 6;
+    }
+}
+
+
+

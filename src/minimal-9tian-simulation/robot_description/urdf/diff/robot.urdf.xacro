@@ -1,0 +1,28 @@
+<robot name="cleaning_robot"
+    xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:include filename="$(find robot_description)/urdf/includes/materials.urdf.xacro"/>
+
+    <xacro:property name="robot_namespace" value="/steer_bot"/>
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <legacyModeNS>true</legacyModeNS>
+            <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        </plugin>
+    </gazebo>
+
+    <xacro:include filename="base_link.urdf.xacro" />
+    <xacro:include filename="rslidar_16.urdf.xacro" />
+    <xacro:include filename="bpearl.urdf.xacro" />
+    <xacro:include filename="front_wheel.urdf.xacro" />
+    <xacro:include filename="left_wheel.urdf.xacro" />
+    <xacro:include filename="right_wheel.urdf.xacro" />
+    <xacro:include filename="left_brush.urdf.xacro" />
+    <xacro:include filename="right_brush.urdf.xacro" />
+
+</robot>
+
+
+
+
+

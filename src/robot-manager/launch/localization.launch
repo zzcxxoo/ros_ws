@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- <node name="sim_loc" pkg="pkg_test" type="simLoc.py" /> -->
+    <include file="$(find hdl_localization)/launch/hdl_localization_lio.launch"/>
+    <include file="$(find jt_perception)/launch/perception.launch"/>
+    <include file="$(find jt_planner)/launch/collision_detect.launch"/>
+    <include file="$(find auto_docking)/launch/autodocking.launch"/>
+    <include file="$(find edge_brush)/launch/edgeControl.launch"/>
+    <include file="$(find cv_detection)/launch/cv.launch"/>
+
+</launch>

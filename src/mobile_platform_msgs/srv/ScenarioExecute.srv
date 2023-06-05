@@ -1,0 +1,6 @@
+string name
+string command
+int16 parameter
+---
+int16 status
+string message

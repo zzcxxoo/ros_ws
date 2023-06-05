@@ -1,0 +1,10 @@
+std_msgs/Header header
+
+float64 front_left_speed
+bool front_left_valid
+float64 front_right_speed
+bool front_right_valid
+float64 rear_left_speed
+bool rear_left_valid
+float64 rear_right_speed
+bool rear_right_valid

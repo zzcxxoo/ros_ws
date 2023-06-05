@@ -1,0 +1,9 @@
+# command 0: IDLE
+# command 1: start 
+# command 2: pause
+# command 3: stop
+# command 4: resume   
+int16 command 
+---
+int16 status
+string message

@@ -1,0 +1,6 @@
+string path_name
+---
+int16 status
+bool closeloop
+string message
+geometry_msgs/Pose[] poses

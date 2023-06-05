@@ -1,0 +1,13 @@
+int16 msg
+---
+int16 navigation_running
+int16 mapping_running
+int16 battery_voltage
+int16 lidar_feed
+int16 sonar_feed
+int16 mc_feedback
+string message
+int16 patrolling
+string navigation_state
+string autodocking_state
+

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="cmd_vel_to_drive_command" pkg="robot_manager" type="cmd_vel_to_drive_command" output="screen" />
+
+</launch>

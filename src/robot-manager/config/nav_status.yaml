@@ -1,0 +1,28 @@
+navigation_status:  
+ is_moving : false
+ last_waypoint: -1
+ last_status: -1
+ cur_waypoint: -1
+ goal_counter: 0
+
+ last_coordinate: 
+   position:
+     x: 0
+     y: 0
+     z: 0
+   orientation:
+     x: 0
+     y: 0
+     z: 0
+     w: 0
+ curr_coordinate: 
+   position:
+     x: 0
+     y: 0
+     z: 0
+   orientation:
+     x: 0
+     y: 0
+     z: 0
+     w: 0
+

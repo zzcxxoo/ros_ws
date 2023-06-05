@@ -1,0 +1,5 @@
+bool set_init
+string map_name
+---
+int16 status
+string message

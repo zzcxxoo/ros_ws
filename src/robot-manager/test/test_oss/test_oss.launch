@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+    <rosparam command="load" file="$(find robot_manager)/config/oss.yaml" ns="/oss"/>
+
+    <node name="test_oss_node" pkg="robot_manager" type="test_oss" output="screen" />
+
+</launch>

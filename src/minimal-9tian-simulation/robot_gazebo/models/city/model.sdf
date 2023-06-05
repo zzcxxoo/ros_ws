@@ -1,0 +1,38 @@
+<sdf version='1.6'>
+  <model name='city'>
+    <static>true</static>
+    <link name='base_link'>
+      <pose frame=''>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <mass>800</mass>
+        <inertia>
+          <ixx>1.5926e+13</ixx>
+          <ixy>2.1954e+11</ixy>
+          <ixz>1.597e+11</ixz>
+          <iyy>1.6821e+13</iyy>
+          <iyz>2.278e+10</iyz>
+          <izz>3.2276e+13</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://city/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose frame=''>0 0 0 0 S0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://city/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

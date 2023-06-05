@@ -1,0 +1,7 @@
+geometry_msgs/Pose start_pose
+geometry_msgs/Pose end_pose
+sensor_msgs/Image map
+---
+int8 status
+string message
+nav_msgs/Path planner_path

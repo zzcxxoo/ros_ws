@@ -1,0 +1,5 @@
+string service_name
+bool turn_on
+---
+int16 status
+string message

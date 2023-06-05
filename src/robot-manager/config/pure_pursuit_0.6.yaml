@@ -1,0 +1,52 @@
+# Path files location in home directory (~/)
+folder_path: "/.robot/data/maps/"
+
+# ROS topics for publishing twist; subscribing current velocity and current pose
+twist_topic: "/nav/cmd_vel"
+current_velocity_topic: "/nav/cmd_vel"
+current_pose_topic: "/odom" #"/localizer_pose"
+
+# Model for the robot; 0 - single | 1 - patrol
+operation_mode: 0
+
+# Loop rate for the node
+loop_rate: 10
+
+# Maximum value for the searching radius
+radius_max: 9e10
+
+# Maximun angular speed
+max_angular_z: 0.5
+
+# Lookahead distance ratio for following
+lookahead_distance_ratio: 2.0 #2.5 #0.1 #0.5
+
+# Minimum lookahead distance for following
+minimum_lookahead_distance: 0.8 #0.8 #2.0 #0.1
+
+# Maximum lookahead distance
+maximum_lookahead_distance: 2 #1 #1.0 #10
+
+# Linear interpolation
+is_linear_interpolation: false #true
+
+# Whether to filter subscribed pose topic 
+is_filter_input_pose: true
+
+# Median filter size of the pose topic
+input_pose_filter_size: 5
+
+# Maximum possible velocity in m/s
+maximum_velocity: 0.6
+
+# Minimum possible velocity in m/s
+minimum_velocity: 0.2
+
+# Constant K for calculating current velocity
+k: 1
+
+# Kappa threshold for lookahead adjustment
+lookahead_kappa_threshold: 0.1
+
+# Lookahead adjustment ratio 
+lookahead_adjustment_ratio: 0.8

@@ -1,0 +1,6 @@
+Package: minimal-9tian-simulation
+Version: 0.0.1
+Architecture: amd64
+Maintainer: jtcx <support@jtcx.com>
+Description: minimal-9tian-simulation
+Depends: ros-noetic-velodyne-simulator, ros-noetic-teleop-twist-keyboard 

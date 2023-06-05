@@ -1,0 +1,6 @@
+# cloud_server: "http://1.117.217.164:18080"
+oss_url: "https://oss-cn-shenzhen.aliyuncs.com"
+cloud_server: "http://paas-test.jtcx.cn"
+token_request_url: "/oss/sts"
+upload_meta_url: "/vcu/"
+oss_bucket: "jtcx"

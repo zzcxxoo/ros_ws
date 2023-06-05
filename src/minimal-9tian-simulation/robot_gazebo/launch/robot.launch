@@ -1,0 +1,45 @@
+<launch>
+    <!-- 将 Urdf 文件的内容加载到参数服务器 -->
+    <env name="GAZEBO_MODEL_PATH" value="$(find robot_gazebo)/models"/>
+    <env name="GAZEBO_RESOURCE_PATH" value="$(find robot_gazebo)/models"/>
+    <param name="robot_description" command="$(find xacro)/xacro $(find robot_description)/urdf/diff/robot.urdf.xacro" />
+    <!-- 启动 gazebo -->
+    <arg name="world_name" default="$(find robot_gazebo)/worlds/test.world" />
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world_name)" />
+        <arg name="paused" value="false" />
+        <arg name="use_sim_time" value="true" />
+        <arg name="gui" value="true" />
+        <arg name="headless" value="false" />
+        <arg name="debug" value="false" />
+    </include>
+
+    <remap from="/cmd_vel" to="/mobile_base_controller/cmd_vel"/>
+    <remap from="/mobile_base_controller/odom" to="/odom_raw"/>
+
+    <!-- 在 gazebo 中显示机器人模型 -->
+    <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model cleanrobot -param robot_description" />
+
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="static_transform_publisher" args="0 0 0 0 0 0 /map /world"/> -->
+
+    # publish robot state to tf
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <include file="$(find robot_control)/launch/control.launch" />
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_description)/rviz/robot.rviz" />
+
+    <node name="tele" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" launch-prefix="gnome-terminal -x"/>
+
+    <!-- <node pkg="odom_to_tf_and_path" type="odom2tfAndPath" name="odom_gt_tf" output="screen">
+        <param name="odom_topic" value="odom_basefootprint" />
+        <param name="parent_frame" value="/world" />
+        <param name="child_frame" value="/base_footprint" />
+        <param name="path_enable" value="true" />
+        <param name="path_topic" value="/robot_path_gt" />
+        <param name="path_dist_threshold" value="0.1" />
+        <param name="path_angle_threshold" value="2" />
+    </node> -->
+
+</launch>

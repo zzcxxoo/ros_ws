@@ -1,0 +1,10 @@
+string map_name
+string path_name
+# string zone_name
+# geometry_msgs/Pose[] poses
+geometry_msgs/Polygon coordinates
+geometry_msgs/Quaternion angle 
+
+---
+int8 status
+string message

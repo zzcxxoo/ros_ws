@@ -1,0 +1,8 @@
+geometry_msgs/Point[] vertex 
+geometry_msgs/Pose start_pose
+geometry_msgs/Pose end_pose
+bool valid_start_pose
+---
+int8 status
+string message
+nav_msgs/Path planner_path

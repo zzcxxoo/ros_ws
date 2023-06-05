@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<launch>
+	<arg name="use_hesai" default="true" />
+
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_base_link" args="0 0 0.5 0 0 0 base_footprint base_link"/> -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="velodyne_to_base_link" args="0.5 0 0.6 1.570795 0 0 base_link velodyne" if="$(arg use_hesai)"/>
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="velodyne2_to_base_link" args="0.5 0 0.6 0 0 0 base_link velodyne" unless="$(arg use_hesai)"/>
+
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_to_rslidar" args="0.75 0 0.1 0 1.570795 0 base_link rslidar"/> -->
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_to_imu" args="0 0 0.45 0 0 0 base_link imu_link"/> -->
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_to_front_camera" args="0.75 0 0.2 0 0 0 base_link usb_cam_front"/> -->
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="base_link_to_back_camera" args="-0.75 0 0.2 3.1415926 0 0 base_link usb_cam_back"/> -->
+
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="imu_to_velodyne" args="0.5 0 0.15 1.570795 0 0 imu_link velodyne"/> -->
+ 
+</launch>

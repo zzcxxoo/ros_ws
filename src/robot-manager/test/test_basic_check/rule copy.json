@@ -1,0 +1,110 @@
+{
+    "CAN": {
+        "nodes": [
+            "simChassisNode"
+        ],
+        "topics": [
+            {
+                "name": "chassis",
+                "hz": 50,
+                "offset": 2
+            }
+        ]
+    },
+    "sensors": {
+        "topics": [
+            {
+                "name": "lidar_points",
+                "hz": 10,
+                "offset": 1
+            },
+            {
+                "name": "imu/data",
+                "hz": 100,
+                "offset": 2
+            }
+        ]
+    },
+    "robot-manager": {
+        "nodes": [
+            "check_services",
+            "behavior",
+            "param_changer"
+        ]
+    }
+
+    {
+        "CAN": {
+            "msg": {
+                "nodes": {
+                    "simChassisNode": "normal"
+                },
+                "topics": {
+                    "chassis": "normal"
+                }
+            },
+            "status": "exception"
+        }
+    }
+
+    {
+        "CAN": {
+            "msg": {
+                "nodes": {
+                    "simChassisNode": "normal"
+                },
+                "topics": {
+                    "chassis": "normal"
+                }
+            },
+            "status": "exception"
+        },
+        "robot-manager": {
+            "msg": {
+                "nodes": {"
+  behavior":"normal","paramchanger":"normal","service_and_map_manager":"
+  normal"},"topics":{}},"status":"normal"},"sensors":{"msg":{"nodes": {},
+                    "topics": {
+                        "imu/data": "hz wrong",
+                        "lidar_points": "hz wrong"
+                    }
+                },
+                "status": "exception"
+            }
+        }
+        
+        {
+            "CAN": {
+                "msg": {
+                    "nodes": {
+                        "simChassisNode": "node dead"
+                    },
+                    "topics": {
+                        "chassis": "hz wrong"
+                    }
+                },
+                "status": "exception"
+            },
+            "robot-manager": {
+                "msg": {
+                    "nodes": {
+                        "behavior": "normal",
+                        "paramchanger": "normal",
+                        "service_and_map_manager": "normal"
+                    },
+                    "topics": {}
+                },
+                "status": "normal"
+            },
+            "sensors": {
+                "msg": {
+                    "nodes": {},
+                    "topics": {
+                        "imu/data": "normal",
+                        "lidar_points": "normal"
+                    }
+                },
+                "status": "normal"
+            }
+        }
+    

@@ -1,0 +1,7 @@
+string trace_id
+---
+string device_sn
+string device_id
+string device_token
+string model_id
+string model_token

@@ -1,0 +1,4 @@
+std_msgs/Empty empty
+---
+int16 status
+string map

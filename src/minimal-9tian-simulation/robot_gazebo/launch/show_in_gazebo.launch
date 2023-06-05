@@ -1,0 +1,23 @@
+<launch>
+
+    <env name="GAZEBO_MODEL_PATH" value="$(find robot_gazebo)/models"/>
+    <env name="GAZEBO_RESOURCE_PATH" value="$(find robot_gazebo)/models"/>
+    <env name="GAZEBO_PLUGIN_PATH" value="$(find robot_gazebo)/lib"/>
+
+    <!-- 将 Urdf 文件的内容加载到参数服务器 -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find robot_description)/urdf/diff/robot.urdf.xacro" />
+
+    <!-- 启动 gazebo -->
+    <arg name="world_name" default="$(find robot_gazebo)/worlds/env_latest.world" />
+    <!-- <arg name="world_name" default="$(find robot_gazebo)/worlds/lego_debug_0.world" /> -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(arg world_name)" />
+        <arg name="paused" value="false" />
+        <arg name="use_sim_time" value="true" />
+        <arg name="gui" value="true" />
+        <arg name="headless" value="false" />
+        <arg name="debug" value="false" />
+    </include>
+    <!-- 在 gazebo 中显示机器人模型 -->
+    <node pkg="gazebo_ros" type="spawn_model" name="model" args="-urdf -model cleanrobot -param robot_description" />
+</launch>

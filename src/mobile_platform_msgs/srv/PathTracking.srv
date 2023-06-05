@@ -1,0 +1,6 @@
+int16 command 
+string path_name
+string mode
+---
+int16 status
+string message

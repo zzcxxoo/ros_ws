@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+
+    <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+        <rosparam command="load" file="$(find robot_manager)/config/twists_mux.yaml"/>
+        <remap from="cmd_vel_out" to="cmd_vel_mux"/>
+    </node>
+
+    <include file="$(find robot_manager)/launch/velocity_smoother.launch"/>
+
+    <include file="$(find tracking_controller)/launch/tracking.launch"/>
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="map_to_world" args="0 0 -1.0 0 0 0 world map"/>
+    <node name="map_server" pkg="map_server" type="map_server" output="screen">
+        <param name="frame_id" value="world"/>
+    </node>
+
+    <node name="auto_brush_node" pkg="auto_brush" type="auto_brush_node" output="screen" 
+          args="/usr/local/params/auto_brush/config.json"></node>
+    <include file="$(find auto_brush)/launch/jt_audio.launch"/>
+
+    <node pkg="jtrob_nav" name="target_point_node_test" type="jtrob_nav_target_point_node" output="screen"/>
+    <node pkg="jtrob_nav" name="astar_node_test" type="jtrob_nav_astar_node" output="screen"/>
+    <include file="$(find coverage_planner)/launch/coverage_planner_node.launch"/>
+    <node pkg="jt_planner" type="jt_planner_coverage_planning" name="jt_planner_coverage_planning" output="screen"/>
+
+    <include file="$(find map_partition)/launch/run.launch"/>
+
+</launch>

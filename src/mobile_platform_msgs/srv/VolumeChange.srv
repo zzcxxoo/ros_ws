@@ -1,0 +1,5 @@
+bool stop_play
+int16 volume
+---
+int16 status
+string message

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <link name="base_footprint">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://cleaningrobot_description/meshes/base_footprint.STL" />
+            </geometry>
+            <xacro:color_material color="yellow"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://cleaningrobot_description/meshes/base_footprint.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="base_link">
+        <inertial>
+            <origin xyz="0 0 0.2541" rpy="0 0 0" />
+            <mass value="24.9682" />
+            <inertia ixx="1.4912" ixy="-0.0134" ixz="0.0072" iyy="2.6163" iyz="-0.0002" izz="3.5498" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://cleaningrobot_description/meshes/base_link.STL" />
+            </geometry>
+            <xacro:color_material color="white"/>
+
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://cleaningrobot_description/meshes/base_link.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="base_footprint2base_link" type="fixed">
+        <origin xyz="0 0 0.53363" rpy="0 0 0" />
+        <parent link="base_footprint" />
+        <child link="base_link" />
+        <axis xyz="0 0 0" />
+    </joint>
+
+    <!-- ultra sonar -->
+
+    <link name="sonar1"></link>
+  <joint
+    name="baselink2sonar1"
+    type="fixed">
+    <origin
+      xyz="0.7315 -0.156 -0.13812"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="sonar1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="sonar2">
+  </link>
+  <joint
+    name="baselink2sonar2"
+    type="fixed">
+    <origin
+      xyz="0.489 -0.4765 -0.13812"
+      rpy="-1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="sonar2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="sonar3">
+  </link>
+  <joint
+    name="baselink_sonar3"
+    type="fixed">
+    <origin
+      xyz="0.069 -0.4765 -0.13812"
+      rpy="-1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="sonar3" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="sonar4">
+  </link>
+  <joint
+    name="baselink2sonar4"
+    type="fixed">
+    <origin
+      xyz="-0.351 -0.4765 -0.13812"
+      rpy="-1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="sonar4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="sonar5">
+  </link>
+  <joint
+    name="baselink2sonar5"
+    type="fixed">
+    <origin
+      xyz="-0.7315 -0.3225 -0.13812"
+      rpy="-1.5708 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="sonar5" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="sonar6">
+  </link>
+  <joint
+    name="baselink2sonar6"
+    type="fixed">
+    <origin
+      xyz="-0.7315 0.3225 -0.13812"
+      rpy="-1.5708 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="sonar6" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="sonar7">
+  </link>
+  <joint
+    name="baselink2sonar7"
+    type="fixed">
+    <origin
+      xyz="-0.351 0.4765 -0.13812"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="sonar7" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="sonar8">
+  </link>
+  <joint
+    name="baselink2sonar8"
+    type="fixed">
+    <origin
+      xyz="0.069 0.4765 -0.13812"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="sonar8" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="sonar9">
+  </link>
+  <joint
+    name="baselink2sonar9"
+    type="fixed">
+    <origin
+      xyz="0.489 0.4765 -0.13812"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="sonar9" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="sonar10">
+  </link>
+  <joint
+    name="baselink2sonar10"
+    type="fixed">
+    <origin
+      xyz="0.7315 0.156 -0.13812"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="sonar10" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+    <!-- ultra sonar -->
+
+    <gazebo>
+        <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>50.0</updateRate>
+            <bodyName>base_footprint</bodyName>
+            <topicName>odom_basefootprint</topicName>
+            <gaussianNoise>0.0</gaussianNoise>
+            <frameName>world</frameName>
+            <xyzOffsets>0 0 0</xyzOffsets>
+            <rpyOffsets>0 0 0</rpyOffsets>
+        </plugin>
+    </gazebo>
+
+</robot>

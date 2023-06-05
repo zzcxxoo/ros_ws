@@ -1,0 +1,5 @@
+string name
+---
+int16 status
+string message
+mobile_platform_msgs/ScenarioLoadData data

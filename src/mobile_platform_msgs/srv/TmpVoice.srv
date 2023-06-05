@@ -1,0 +1,6 @@
+int16 sound_id
+int16 circle_time
+bool emergency
+---
+int16 status
+string message

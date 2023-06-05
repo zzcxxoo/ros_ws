@@ -1,0 +1,8 @@
+Package: robot-manager
+Version: 1.3.5
+Architecture: amd64
+Maintainer: Zhang Zhicheng <zzc@example.com>
+Init-Command: python /tmp/jtcx/robot-manager/setup/init.py
+Description: backend for webapp, control manager of robot
+Update-Command: python /tmp/jtcx/robot-manager/setup/init.py
+Depends: ros-noetic-ecl-threads

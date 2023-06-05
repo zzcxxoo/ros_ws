@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<launch>
+
+	<node name="driver_gnss_serial" pkg="driver_gnss" type="driver_gnss_node" output="screen">
+		<param name="brand" value="unicore" />
+		<!-- <param name="local_host" value="192.168.3.1" /> -->
+		<!-- <param name="local_port" value="24833" /> -->
+		<param name="remote_host" value="192.168.3.226" />
+		<param name="remote_port" value="24577" />
+		<param name="heading_offset" value="0.0" />f
+		<param name="is_rtk" value="true" />
+		<param name="is_gga" value="true" />
+		<param name="is_nmea" value="true" />
+		<param name="frame_id" value="gps" />
+		<param name="using_udp" value="false" />
+		<param name="port_name" value="/dev/ttyS1" />
+		<param name="baud_rate" value="115200" />
+	</node>
+
+	<node name="driver_rtcm" pkg="driver_rtcm" type="driver_rtcm_node" respawn="true" output="screen">
+		<param name="caster_ip" value="203.107.45.154" />
+		<param name="caster_port" value="8002" />
+		<!-- <param name="username" value="qxmmkw001" /> -->
+		<param name="username" value="qxwmgk001" />
+		<!-- <param name="password" value="42e9ffe" /> -->
+		<param name="password" value="112b756" />
+
+		<param name="mount_point" value="AUTO" />
+		<param name="topic_gga" value="/gnss/gga" />
+	</node>
+
+</launch>

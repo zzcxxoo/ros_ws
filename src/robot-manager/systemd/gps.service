@@ -1,0 +1,19 @@
+[Unit]
+Description=gps service launcher
+After=roscore.service
+PartOf=roscore.service
+
+[Service]
+User=jtcx
+Type=simple
+KillMode=process
+TimeoutStopSec=1
+KillSignal=SIGTERM
+ExecStartPre=/bin/systemctl is-active roscore
+ExecStartPre=/bin/sleep 60
+ExecStart=/usr/local/share/health_monitor/ros_wrapper.sh roslaunch robot_manager gps.launch
+Restart=always
+RestartSec=3s
+
+[Install]
+WantedBy=multi-user.target

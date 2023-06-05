@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="PI" value = "3.1415926"/>
+
+    <link name="bpearl">
+        <inertial>
+            <origin xyz="0 0 0.0159" rpy="0 0 0" />
+            <mass value="0.0252" />
+            <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://robot_description/meshes/bpearl.STL" />
+            </geometry>
+            <xacro:color_material color="blue"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://robot_description/meshes/bpearl.STL" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="base_link2bpearl" type="fixed">
+        <origin xyz="0.7015 0 0.1441" rpy="${PI/2} 0 ${PI/2}" />
+        <parent link="base_link" />
+        <child link="bpearl" />
+        <axis xyz="0 0 0" />
+    </joint>
+    <gazebo reference="bpearl">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+</robot>

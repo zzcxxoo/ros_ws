@@ -1,0 +1,77 @@
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+
+    <xacro:property name="sensor_parameters" value="$(find robot_description)/sensors/config/sensor_parameters.yaml" />
+    <xacro:property name="props" value="${xacro.load_yaml(sensor_parameters)}"/>
+    
+    <!-- velodyne16 lidar : attached to lidar16 link -->
+    <xacro:if value="${props['rslidar16']['open']}">
+        <xacro:include filename="$(find robot_description)/sensors/velodyne.urdf.xacro"/>
+        <xacro:VLP-16 name="rslidar16" topic="${props['rslidar16']['topic']}" organize_cloud="false" hz="${props['rslidar16']['hz']}" 
+                min_range="${props['rslidar16']['min_range']}" max_range="${props['rslidar16']['max_range']}"
+                noise="${props['rslidar16']['noise']}" vmin_angle="${props['rslidar16']['vmin_angle']}" vmax_angle="${props['rslidar16']['vmax_angle']}" 
+                samples="${props['rslidar16']['samples']}" gpu="${props['rslidar16']['gpu']}" visualize="${props['rslidar16']['visualize']}">
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+        </xacro:VLP-16>
+    </xacro:if>
+
+    <!-- camera : randomly pick a place to attach -->
+    <xacro:if value="${props['camera']['open']}">
+        <xacro:include filename="$(find robot_description)/sensors/CameraSensor.xacro"/>
+        <xacro:Macro_CameraROS name="${props['camera']['name']}" parent="base_link" frame="camera_link" fov="${props['camera']['fov']}" hz="${props['camera']['hz']}" width="${props['camera']['width']}" height="${props['camera']['height']}">
+            <origin xyz="0.676 0 0" rpy="-${PI/2} 0 -${PI/2}" />
+        </xacro:Macro_CameraROS>
+    </xacro:if>
+
+    <!-- 9 dof IMU : assume it attaches to base_link -->
+    <xacro:if value="${props['IMU']['open']}">
+        <xacro:include filename="$(find robot_description)/sensors/IMUSensor.xacro"/>
+        <xacro:Macro_IMUROS name="Xsens" parent="base_link" topic="${props['IMU']['topic']}" rate="${props['IMU']['hz']}" gaussianNoise="${props['IMU']['gaussianNoise']}">
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </xacro:Macro_IMUROS>
+    </xacro:if>
+
+    <!-- gps : randomly pick a place to attach -->
+    <!-- params="name parent *origin color ref_lat ref_long ref_head drift vel_drift noise vel_noise update_rate"> -->
+    <xacro:if value="${props['gps']['open']}">
+        <xacro:include filename="$(find robot_description)/sensors/gps_standard.urdf.xacro"/>
+        <xacro:sensor_standard_gps name="gps" parent="rslidar16" color="green" topic="${props['gps']['topic']}" ref_lat="${props['gps']['ref_lat']}" ref_long="${props['gps']['ref_long']}" ref_head="${props['gps']['ref_head']}" drift="${props['gps']['drift']}" vel_drift="${props['gps']['vel_drift']}" noise="${props['gps']['noise']}" vel_noise="${props['gps']['vel_noise']}" update_rate="${props['gps']['hz']}">
+            <origin xyz="-0.5 -0.15 0" rpy="-${PI/2} 0 0" />
+        </xacro:sensor_standard_gps> 
+    </xacro:if>
+
+    <!-- rotationary encoder attach to each wheel -->
+    <!-- <xacro:macro name="sensor_rotary_encoder" params="ns:=/ parent joint:=front_left_wheel_rev d:=0.15 topic:=/encoder update_rate:=100.0 ppr:=150"> -->
+    <xacro:if value="${props['encoder']['open']}">
+        <xacro:include filename="$(find robot_description)/sensors/rotary_encoder.urdf.xacro"/>
+        <xacro:sensor_rotary_encoder ns="encoder" parent="left_wheel" joint="rear_left_wheel_joint" d="${props['encoder']['d']}" topic="/left_wheel" update_rate="${props['encoder']['hz']}" ppr="${props['encoder']['ppr']}"/>
+        <xacro:sensor_rotary_encoder ns="encoder" parent="right_wheel" joint="rear_right_wheel_joint" d="${props['encoder']['d']}" topic="/right_wheel" update_rate="${props['encoder']['hz']}" ppr="${props['encoder']['ppr']}"/>
+    </xacro:if>
+
+    <!-- bpearl laser -->
+    <!-- <xacro:macro name="sensor_rs_bpearl" params="prefix parent prefix_topic *origin range_min range_max hfov samples vfov lasers fps gpu:=^|true"> -->
+    <xacro:if value="${props['bpearl']['open']}">
+        <xacro:include filename="$(find robot_description)/sensors/bpearl.urdf.xacro"/>
+        <xacro:sensor_rs_bpearl prefix="bpearl" parent="bpearl" prefix_topic="${props['bpearl']['prefix_topic']}" range_min="${props['bpearl']['range_min']}" range_max="${props['bpearl']['range_max']}" hfov="${props['bpearl']['hfov']}" samples="${props['bpearl']['samples']}" vfov="${props['bpearl']['vfov']}" lasers="${props['bpearl']['lasers']}" fps="${props['bpearl']['fps']}" gpu="${props['bpearl']['gpu']}" visualize="${props['bpearl']['visualize']}">
+            <origin xyz="0 0 0.03" rpy="0 0 ${PI/2}"/>
+        </xacro:sensor_rs_bpearl>
+    </xacro:if>
+    
+    <!-- ultra sonar -->
+    <!-- <xacro:macro name="ultrasonar" params="prefix parent *origin range_min range_max hfov samples vfov resolution fps fov visualize"> -->
+    <xacro:if value="${props['sonar']['open']}">
+        <xacro:include filename="$(find robot_description)/sensors/ultrasonar.urdf.xacro"/>
+        <xacro:macro name="sonarloop" params="k">
+            <xacro:if value="${props['sonar']['open_idx'][k-1]}">
+                <xacro:ultrasonar prefix="ultrasonar${k}" parent="sonar${k}" range_min="${props['sonar']['range_min']}" range_max="${props['sonar']['range_max']}" samples="${props['sonar']['samples']}" resolution="${props['sonar']['resolution']}" fps="${props['sonar']['fps']}" fov="${props['sonar']['fov']}" visualize="${props['sonar']['visualize']}">
+                <origin xyz="0 0 0" rpy="0 -${PI/2} 0"/>
+                </xacro:ultrasonar>
+            </xacro:if>
+            <xacro:if value="${10-k}">
+                <xacro:sonarloop k="${k+1}" />
+            </xacro:if>
+        </xacro:macro>
+        <xacro:sonarloop k="1"/>
+    </xacro:if>
+
+</robot>

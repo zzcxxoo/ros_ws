@@ -1,0 +1,6 @@
+string cmd
+---
+geometry_msgs/Point[] corners
+sensor_msgs/Image image
+int8 status
+string message

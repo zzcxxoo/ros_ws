@@ -1,0 +1,38 @@
+<sdf version='1.6'>
+  <model name='factory'>
+    <static>true</static>
+    <link name='base_link'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>20.779 7.8948 40.595 0 -0 0</pose>
+        <mass>4.5324e+09</mass>
+        <inertia>
+          <ixx>1.6663e+13</ixx>
+          <ixy>2.479e+12</ixy>
+          <ixz>-5.5148e+11</ixz>
+          <iyy>6.2472e+13</iyy>
+          <iyz>-3.3368e+11</iyz>
+          <izz>7.3214e+13</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://factory/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://factory/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

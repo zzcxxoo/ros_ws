@@ -1,0 +1,71 @@
+
+camera:
+  open: false
+  name: "usb_cam_front"
+  fov: 1.3962634
+  hz: 30
+  # image size
+  width: 1280
+  height: 720
+
+rslidar16:
+  open: true
+  topic: "/lidar_points"
+  hz: 10
+  samples: 1800
+  min_range: 1
+  max_range: 130.0
+  vmin_angle: -15
+  vmax_angle: 15
+  noise: 0.008
+  gpu: true
+  visualize: false
+
+IMU:
+  open: true
+  topic: "/sim/imu/data"
+  hz: 100
+  gaussianNoise: 0.0
+
+gps:
+  open: false
+  topic: "/novatel718d/pos"
+  ref_lat: 22.537
+  ref_long: 113.954
+  ref_head: 0.0
+  drift: [0,0,0]
+  vel_drift: [0,0,0]
+  noise: [0,0,0]
+  vel_noise: [0,0,0]
+  hz: 10
+
+encoder:
+  open: false
+  d: 0.24
+  hz: 50
+  ppr: 1000
+
+bpearl:
+  open: false
+  prefix_topic: bpearl
+  range_min: 0.1
+  range_max: 100.0
+  samples: 360
+  hfov: 360
+  vfov: 90
+  lasers: 32
+  fps: 10
+  gpu: false
+  visualize: false
+
+
+sonar:
+  open: false
+  open_idx: [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+  range_min: 0.1
+  range_max: 2.0
+  samples: 8
+  resolution: 0.1
+  fps: 30
+  fov: 10
+  visualize: false

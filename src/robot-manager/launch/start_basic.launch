@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- <include file="$(find can_ipc)/launch/can_ipc.launch" /> -->
+    <include file="$(find hesai_lidar)/launch/hesai_lidar.launch" />
+    <include file="$(find rslidar_sdk)/launch/start.launch" />
+    <include file="$(find driver_imu)/launch/imu.launch" />
+    <include file="$(find robot_manager)/launch/drive_command.launch" />
+    <include file="$(find robot_manager)/launch/usb_cam_front.launch" />
+    <include file="$(find robot_manager)/launch/usb_cam_back.launch" />
+    <!-- <include file="$(find robot_manager)/launch/gps.launch"/> -->
+    <include file="$(find auto_docking)/launch/dockingserial.launch"/>
+    <node pkg="robot_manager" type="robot_tf.sh" name="robot_tf" />
+
+    <!-- <include file="$(find bag_recorder)/launch/bag_recorder.launch"/> -->
+    <include file="$(find robot_manager)/launch/basic_check.launch"/>
+    
+</launch>
+
+
+
+

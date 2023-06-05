@@ -1,0 +1,11 @@
+<launch>
+    <!-- 将 Urdf 文件的内容加载到参数服务器 -->
+    <param name="robot_description" command="$(find xacro)/xacro $(find robot_description)/urdf/diff/robot_with_sensors.urdf.xacro"/>
+
+    <node pkg="tf" type="static_transform_publisher" name="jt_base_link" args="-0.167 -0.000 0.512 0 0 0 base_footprint jt_base_link 50" />
+    
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find robot_description)/rviz/robot.rviz" />
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" output="screen" />
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" />
+
+</launch>

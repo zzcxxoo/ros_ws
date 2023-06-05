@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<robot name="sensor_rs_bpearl" xmlns:xacro="http://wiki.ros.org/xacro">
+
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <xacro:macro name="sensor_rs_bpearl_gazebo" params="range_min range_max hfov samples vfov lasers fps gpu visualize">
+    <gazebo reference="${prefix}_link">
+      <xacro:if value="${gpu}">
+        <!-- Using GPU needs: https://github.com/RobotnikAutomation/velodyne_simulator -->
+        <xacro:property name="ray_type" value="gpu_ray" />
+        <xacro:property name="plugin_lib" value="libgazebo_ros_velodyne_gpu_laser.so" />
+      </xacro:if>
+      <xacro:unless value="${gpu}">
+        <xacro:property name="ray_type" value="ray" />
+        <xacro:property name="plugin_lib" value="libgazebo_ros_velodyne_laser.so" />
+      </xacro:unless>
+        <sensor type="${ray_type}" name="bpearl_sensor">
+          <pose>0 0 0 0 0 0.0</pose>
+          <visualize>false</visualize>
+          <update_rate>10</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+				<!-- for a high quality simulation -->
+                <samples>360</samples>
+                <min_angle>${-M_PI}</min_angle>
+                <max_angle>${M_PI}</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>32</samples>
+                <min_angle>-${5*M_PI/180.0}</min_angle>  <!-- bpearl has 90 degrees of vertical field of view-->
+                <max_angle> ${80*M_PI/180.0}</max_angle>  
+              </vertical>
+            </scan>
+            <range>
+              <min>0.1</min>
+              <max>100</max>
+              <resolution>0.01</resolution>
+            </range>
+            <noise>
+              <type>none</type>
+            </noise>
+          </ray>
+          <plugin name="bpearl_controller" filename="libgazebo_ros_velodyne_gpu_laser.so">
+            <topicName>bpearl/points</topicName>
+            <frameName>sim/bpearl_link</frameName>
+            <gaussianNoise>0.008</gaussianNoise>
+          </plugin>
+        </sensor>
+    </gazebo>
+
+  </xacro:macro>
+
+  <xacro:macro name="sensor_rs_bpearl" params="prefix parent prefix_topic *origin range_min range_max hfov samples vfov lasers fps visualize gpu:=^|true">
+
+    <link name="${prefix}_link"/>
+
+    <joint name="${prefix}_joint" type="fixed">
+        <xacro:insert_block name="origin" />
+        <parent link="${parent}"/>
+        <child link="${prefix}_link" />
+    </joint>
+
+    <gazebo reference="${prefix}_link">
+      <xacro:if value="${gpu}">
+        <!-- Using GPU needs: https://github.com/RobotnikAutomation/velodyne_simulator -->
+        <xacro:property name="ray_type" value="gpu_ray" />
+        <xacro:property name="plugin_lib" value="libgazebo_ros_velodyne_gpu_laser.so" />
+      </xacro:if>
+      <xacro:unless value="${gpu}">
+        <xacro:property name="ray_type" value="ray" />
+        <xacro:property name="plugin_lib" value="libgazebo_ros_velodyne_laser.so" />
+      </xacro:unless>
+        <sensor type="${ray_type}" name="bpearl_sensor">
+          <pose>0 0 0 0 0 0.0</pose>
+          <visualize>${visualize}</visualize>
+          <update_rate>${fps}</update_rate>
+          <ray>
+            <scan>
+              <horizontal>
+				<!-- for a high quality simulation -->
+                <samples>${samples}</samples>
+                <min_angle>-${hfov/2*M_PI/180.0}</min_angle>
+                <max_angle>${hfov/2*M_PI/180.0}</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>${lasers}</samples>
+                <min_angle>-${5*M_PI/180.0}</min_angle>  <!-- bpearl has 90 degrees of vertical field of view-->
+                <max_angle>${(vfov-5)*M_PI/180.0}</max_angle>  
+              </vertical>
+            </scan>
+            <range>
+              <min>${range_min}</min>
+              <max>${range_max}</max>
+              <resolution>0.01</resolution>
+            </range>
+            <noise>
+              <type>none</type>
+            </noise>
+          </ray>
+          <plugin name="bpearl_controller" filename="${plugin_lib}">
+            <topicName>rslidar_points</topicName>
+            <frameName>sim/bpearl_link</frameName>
+            <gaussianNoise>0.008</gaussianNoise>
+          </plugin>
+        </sensor>
+    </gazebo>
+
+  <!-- <sensor_rs_bpearl_gazebo range_min="${range_min}" range_max="${range_max}" hfov="${hfov}" samples="${samples}" vfov="${vfov}" lasers="${lasers}" fps="${fps}" gpu="${gpu}" visualize="${visualize}"/> -->
+
+  </xacro:macro>
+
+
+  
+</robot>

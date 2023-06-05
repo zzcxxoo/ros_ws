@@ -1,0 +1,22 @@
+[Unit]
+Description=roscore launcher
+After=network-online.target
+Requires=network-online.target
+#Wants=control_master.service  behavior.service  gps.service
+#Before=control_master.service  behavior.service gps.service
+Wants=control_master.service  behavior.service  mqtt_client.service jt_can_ipc.service
+Before=control_master.service  behavior.service  mqtt_client.service jt_can_ipc.service
+
+[Service]
+User=jtcx
+Type=simple
+LimitCORE=1024000
+ExecStartPre=/bin/systemctl is-active network-online.target
+#ExecStartPre=- /bin/bash -c "echo \"/var/log/health_monitor/crash_report/%e.SIG%s.core\" > /proc/sys/kernel/core_pattern"
+ExecStart=/usr/local/share/health_monitor/ros_wrapper.sh roscore
+ExecStartPost=/bin/sleep 5
+Restart=always
+RestartSec=3s
+
+[Install]
+WantedBy=multi-user.target

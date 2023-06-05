@@ -1,0 +1,9 @@
+# save map name
+string selected_map
+---
+# status and result
+int16 status
+string message
+---
+# progress
+float64 progress

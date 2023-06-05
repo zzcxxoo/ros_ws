@@ -1,0 +1,19 @@
+{
+    "CAN":{
+        "nodes": ["simChassisNode"],
+        "topics": [
+            {"name": "chassis", "hz": 50, "offset": 2}
+        ]
+    },
+
+    "sensors":{
+        "topics":[
+            {"name": "lidar_points", "hz": 10, "offset": 1},
+            {"name": "imu/data", "hz": 100, "offset": 2}
+        ]
+    },
+
+    "robot-manager":{
+        "nodes": ["service_and_map_manager", "behavior", "paramchanger"]
+    }
+}

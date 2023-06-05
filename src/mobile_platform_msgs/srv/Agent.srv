@@ -1,0 +1,8 @@
+string  trace_id        # 链路跟踪id
+string  service_id
+string  data            # 传递给agent的json字符串
+---
+int64   code            # 0(正常) 其他(错误)
+string  msg             # 0("ok") 其他(具体错误信息)
+string  trace_id        # 链路跟踪id
+string  result          # 返回结果

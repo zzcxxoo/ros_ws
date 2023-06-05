@@ -1,0 +1,18 @@
+[Unit]
+Description=pure_pursuits launcher
+After=roscore.service
+PartOf=roscore.service
+
+[Service]
+User=jtcx
+Type=simple
+KillMode=process
+TimeoutStopSec=1
+KillSignal=SIGTERM
+ExecStartPre=/bin/systemctl is-active roscore
+ExecStart=/usr/local/share/health_monitor/ros_wrapper.sh rosrun pure_pursuit pure_pursuit_node
+Restart=always
+RestartSec=3s
+
+[Install]
+WantedBy=multi-user.target

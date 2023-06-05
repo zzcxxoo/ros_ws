@@ -1,0 +1,32 @@
+topics:
+# -
+#   name    : area_warning_stop
+#   topic   : lidar/cmd_vel
+#   timeout : 0.5
+#   priority: 8
+-
+  name    : local_planner
+  topic   : move_base/cmd_vel
+  timeout : 0.5
+  priority: 6
+-
+  name    : path_tracking
+  topic   : nav/cmd_vel
+  timeout : 0.5
+  priority: 5
+-
+  name    : webapp
+  topic   : webapp/cmd_vel
+  timeout : 0.5
+  priority: 10
+-
+  name    : autodocking
+  topic   : autodocking/cmd_vel
+  timeout : 0.5
+  priority: 9
+locks:
+-
+  name    : e_stop
+  topic   : e_stop
+  timeout : 0.0
+  priority: 255
